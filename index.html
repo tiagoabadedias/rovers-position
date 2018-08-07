@@ -5,21 +5,36 @@
     crossorigin="anonymous">
 </head>
 <style>
-  img {
+  .hidden {
     max-widht: 50px;
     max-height: 50px;
     display: none;
   }
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
 <body>
-  <img id="roverS" src="roverS.png" />
-  <img id="roverE" src="roverE.png" />
-  <img id="roverN" src="roverN.png" />
-  <img id="roverW" src="roverW.png" />
+  <img class="hidden" id="roverS" src="roverS.png" />
+  <img class="hidden" id="roverE" src="roverE.png" />
+  <img class="hidden" id="roverN" src="roverN.png" />
+  <img class="hidden" id="roverW" src="roverW.png" />
   <br>
   <div class="container">
-    <img src="https://www.shareicon.net/data/128x128/2016/08/18/811114_toys_512x512.png" />
+    <div class="row">
+      <div class="col center">
+        <img src="https://www.sistemanovi.com.br/basenovi/image/ConteudosDisciplinas/29/52/230/300544/rosa-dos-ventos.png?pfdrid_c=true" width="80" height="80" />
+      </div>
+      <div class="col center">
+          <b> Mars rover challenge </b>
+        </div>
+      <div class="col center">
+          <img src="roverS.png" width="50"  height="50"/>
+      </div>
+    </div>
     <label>
       <b>Input:</b>
     </label>
@@ -59,13 +74,11 @@
         <b>Output:</b>
       </label>
     </div>
-
   </div>
   <div class="container">
     <canvas id="canvas" width="1100" height="500">
   </div>
 </body>
-
 <script>
 
   const canvas = document.getElementById('canvas');
@@ -213,8 +226,6 @@
     }
   }
 
-
-
   function setDirectionRight() {
     switch (currentDirection) {
       case 'N':
@@ -274,8 +285,6 @@
         break;
     }
   }
-
-
 
 </script>
 
