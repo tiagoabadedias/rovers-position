@@ -57,7 +57,9 @@
         }
 
         function drawGrid(){
+          
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
           if(limitX == undefined) limitX = canvas.width;
           if(limitY == undefined) limitY = canvas.height;
           drawX(limitX + step, limitY);
@@ -65,6 +67,7 @@
         }
 
         function setInitial(){
+          
           currentX = parseInt(initialX.value, 0) * step;
           let fakeY = parseInt(initialY.value, 0) * step;
           currentY = ((fakeY - limitY) * (-1)) - step;
@@ -72,9 +75,10 @@
           
           if(currentX != NaN && currentY != NaN)
               drawRover(currentX, currentY);
-          }
+        }
 
-          function setGrid(){
+        function setGrid(){
+          
           limitX = parseInt(topX.value, 0) * step;
           limitY = parseInt(topY.value, 0) * step;
           
@@ -86,20 +90,24 @@
         }
 
         function drawRover(x, y){
+          
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           drawGrid();
           ctx.drawImage(rover, x, y, step, step);
         }
 
         function verifyCommands(commands){
+          
           canClick = false;
           let commandsClear = commands.replace(" ","");;
           let resultCommands = commandsClear.split("");
-          for(let c in resultCommands){
-              setTimeout(() => {
-                  execute(resultCommands[c]);
-              
-                  if ((parseInt(c) + 1) == resultCommands.length) {
+          for(let c in resultCommands) {
+            
+            setTimeout(() => {
+                execute(resultCommands[c]);
+            
+                if ((parseInt(c) + 1) == resultCommands.length) {
+                  
                   let line = document.createElement("div");
                   line.className = "row";
                   const valueY = ((limitY - currentY) / step) - 1;
@@ -107,41 +115,43 @@
                   line.appendChild(document.createTextNode(" " + valueY));
                   line.appendChild(document.createTextNode(" => " + currentDirection));
                   document.getElementById("path").appendChild(line);
-                  }
-              },c * 500);
+                
+                }
+            },c * 500);
+          
           }
         }
 
         function execute(command) {
           switch(command) {
               case 'L':
-              setDirectionLeft();
-              break;
+                setDirectionLeft();
+                break;
               case 'R':
-              setDirectionRight();
-              break;
+                setDirectionRight();
+                break;
               case 'M': 
-              move();
-              break;
+                move();
+                break;
           }
         }
 
         function setDirectionLeft(){
           switch(currentDirection){
               case 'N':
-              currentDirection = 'W';
-              break;
+                currentDirection = 'W';
+                break;
               case 'E':
-              currentDirection = 'N';
-              break;
+                currentDirection = 'N';
+                break;
               case 'S':
-              currentDirection = 'E';
-              break;
+                currentDirection = 'E';
+                break;
               case 'W':
-              currentDirection = 'S';
-              break;
+                currentDirection = 'S';
+                break;
               default:
-              break;  
+                break;  
           }
         
           // setImage();
@@ -171,42 +181,46 @@
         function setDirectionRight(){
           switch(currentDirection){
               case 'N':
-              currentDirection = 'E';
-              break;
+                currentDirection = 'E';
+                break;
               case 'E':
-              currentDirection = 'S';
-              break;
+                currentDirection = 'S';
+                break;
               case 'S':
-              currentDirection = 'W';
-              break;
+                currentDirection = 'W';
+                break;
               case 'W':
-              currentDirection = 'N';
-              break;
+                currentDirection = 'N';
+                break;
               default:
-              break;
+                break;
           }
         }
 
         function move(){
           switch(currentDirection){
               case 'N':
-              currentY = currentY - step;
-              break;
+                currentY = currentY - step;
+                break;
               case 'E':
-              currentX = currentX + step;
-              break;
+                currentX = currentX + step;
+                break;
               case 'S':
-              currentY = currentY + step;
-              break;
+                currentY = currentY + step;
+                break;
               case 'W':
-              currentX = currentX - step;
-              break;
+                currentX = currentX - step;
+                break;
               default:
-              break;
+                break;
           }
+          
           drawRover(currentX, currentY);
         
         }
+
+
+
   </script>
   <body>
     <img id="rover" src="https://pixteller.com/assets/storage/designs_images/2017-08-02/05/8-bit-spaceship-1-598134c98aa6e.png"/>
